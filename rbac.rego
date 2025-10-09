@@ -17,6 +17,8 @@
 #	* Rego comparison to other systems: https://www.openpolicyagent.org/docs/latest/comparison-to-other-systems/
 #	* Rego Iteration: https://www.openpolicyagent.org/docs/latest/#iteration
 
+import rego.v1
+
 package app.rbac
 
 # import data.utils
@@ -25,7 +27,7 @@ package app.rbac
 default allow = false
 
 # Allow admins to do anything
-allow {
+allow if {
 	user_is_admin
 }
 
@@ -44,7 +46,7 @@ allow {
 #}
 
 # Allow the action if the user is granted permission to perform the action.
-allow {
+allow if {
 	# Find permissions for the user.
 	some permission
 	user_is_granted[permission]
