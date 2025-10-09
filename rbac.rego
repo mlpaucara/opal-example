@@ -17,9 +17,9 @@
 #	* Rego comparison to other systems: https://www.openpolicyagent.org/docs/latest/comparison-to-other-systems/
 #	* Rego Iteration: https://www.openpolicyagent.org/docs/latest/#iteration
 
-import rego.v1
-
 package app.rbac
+
+import rego.v1
 
 # import data.utils
 
@@ -61,7 +61,7 @@ allow if {
 }
 
 # user_is_admin is true if...
-user_is_admin {
+user_is_admin if {
 	# for some `i`...
 	some i
 
@@ -70,7 +70,7 @@ user_is_admin {
 }
 
 # user_is_viewer is true if...
-user_is_viewer {
+user_is_viewer if {
 	# for some `i`...
 	some i
 
@@ -79,7 +79,7 @@ user_is_viewer {
 }
 
 # user_is_guest is true if...
-user_is_guest {
+user_is_guest if {
 	# for some `i`...
 	some i
 
@@ -90,7 +90,7 @@ user_is_guest {
 
 # user_is_granted is a set of permissions for the user identified in the request.
 # The `permission` will be contained if the set `user_is_granted` for every...
-user_is_granted[permission] {
+user_is_granted[permission] if {
 	some i, j
 
 	# `role` assigned an element of the user_roles for this user...
